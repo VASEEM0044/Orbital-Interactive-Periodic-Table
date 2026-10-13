@@ -92,6 +92,16 @@ export const IconRail: React.FC<IconRailProps> = ({
         >
           <RotateCcw className="w-4 h-4" />
         </button>
+
+        <a
+          href="https://www.facebook.com/mosir.khan.96/"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="w-9 h-9 rounded-xl bg-neutral-900 text-white flex items-center justify-center font-display font-bold text-xs hover:bg-neutral-800 transition-all shadow-2xs mt-2"
+          title="Made With Love By Vaseem Akram Ansari"
+        >
+          VA
+        </a>
       </div>
     </aside>
   );

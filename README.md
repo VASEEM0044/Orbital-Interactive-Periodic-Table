@@ -60,3 +60,10 @@ An advanced, interactive periodic table web application designed for chemistry s
 - **Styling**: Tailwind CSS
 - **Animations**: Motion (Framer Motion)
 - **Icons**: Lucide React
+
+---
+
+## 👨‍💻 Author & Branding
+- **Branding**: Made With Love By **Vaseem Akram Ansari**
+- **Email**: [vaseemakramansari1@gmail.com](mailto:vaseemakramansari1@gmail.com)
+- **Facebook**: [facebook.com/mosir.khan.96](https://www.facebook.com/mosir.khan.96/)

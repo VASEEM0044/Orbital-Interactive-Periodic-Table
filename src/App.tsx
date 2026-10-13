@@ -18,6 +18,7 @@ import { ElementCompareModal } from './components/ComparisonTool/ElementCompareM
 import { ChemistryQuizModal } from './components/QuizMode/ChemistryQuizModal';
 import { soundFx } from './utils/audio';
 import { LanguageProvider, useLanguage } from './context/LanguageContext';
+import { Heart, Mail, Facebook } from 'lucide-react';
 
 function PeriodicApp() {
   const { isRtl, getElementName } = useLanguage();
@@ -175,6 +176,37 @@ function PeriodicApp() {
                 />
               </div>
             </div>
+
+            {/* BRANDING & CONTACT FOOTER */}
+            <footer className="mt-4 pt-4 border-t border-black/[0.06] flex flex-col sm:flex-row items-center justify-between gap-3 text-xs">
+              <div className="flex items-center gap-1.5 font-medium text-neutral-700 select-none">
+                <span>Made With Love By</span>
+                <span className="font-display font-bold text-neutral-900 tracking-tight text-sm">Vaseem Akram Ansari</span>
+                <Heart className="w-4 h-4 text-rose-500 fill-rose-500 inline-block animate-pulse ml-0.5" />
+              </div>
+
+              <div className="flex flex-wrap items-center gap-2 sm:gap-3 text-xs">
+                <a
+                  href="mailto:vaseemakramansari1@gmail.com"
+                  className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white hover:bg-neutral-100 border border-black/[0.06] text-neutral-700 hover:text-neutral-900 font-medium transition-all shadow-2xs"
+                  title="Contact via Email"
+                >
+                  <Mail className="w-3.5 h-3.5 text-neutral-500" />
+                  <span className="font-mono text-[11px]">vaseemakramansari1@gmail.com</span>
+                </a>
+
+                <a
+                  href="https://www.facebook.com/mosir.khan.96/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-[#1877F2]/10 hover:bg-[#1877F2]/20 border border-[#1877F2]/20 text-[#1877F2] font-semibold transition-all shadow-2xs"
+                  title="Connect on Facebook"
+                >
+                  <Facebook className="w-3.5 h-3.5 fill-[#1877F2]" />
+                  <span>Facebook Profile</span>
+                </a>
+              </div>
+            </footer>
           </div>
         </div>
       </div>
