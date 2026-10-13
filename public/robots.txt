@@ -1,0 +1,6 @@
+# https://www.robotstxt.org/robotstxt.html
+User-agent: *
+Allow: /
+
+# Google Search Console Sitemap
+Sitemap: https://orbital-interactive-periodic-table.pages.dev/sitemap.xml
