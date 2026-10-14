@@ -81,8 +81,8 @@ export const TopBar: React.FC<TopBarProps> = ({
           </div>
         </div>
 
-        {/* Center: Pill-Nav */}
-        <div className="flex items-center bg-neutral-100 p-1 rounded-full border border-black/[0.04]">
+        {/* Center: Pill-Nav (hidden on mobile, replaced by MobileBottomNav) */}
+        <div className="hidden md:flex items-center bg-neutral-100 p-1 rounded-full border border-black/[0.04]">
           {navItems.map((item) => {
             const isActive = currentView === item.id;
             return (

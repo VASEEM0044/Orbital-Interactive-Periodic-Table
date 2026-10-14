@@ -58,7 +58,7 @@ export const TemperatureRuler: React.FC<TemperatureRulerProps> = ({
         </div>
 
         {/* Clickable Preset Chips */}
-        <div className="flex items-center gap-1.5 flex-wrap">
+        <div className="flex items-center gap-1.5 overflow-x-auto no-scrollbar py-1 max-w-full">
           {benchmarks.map((b) => {
             const isSelected = Math.abs(currentTempK - b.val) < 2;
             return (
@@ -68,7 +68,7 @@ export const TemperatureRuler: React.FC<TemperatureRulerProps> = ({
                   soundFx.playClickSound();
                   onTempChange(b.val);
                 }}
-                className={`px-3 py-1 rounded-full text-xs transition-all font-medium ${
+                className={`px-3 py-1 rounded-full text-xs transition-all font-medium whitespace-nowrap shrink-0 touch-manipulation ${
                   isSelected
                     ? 'bg-[#1A1A1A] text-white shadow-sm'
                     : 'bg-neutral-100 hover:bg-neutral-200/80 text-neutral-700'
@@ -92,7 +92,7 @@ export const TemperatureRuler: React.FC<TemperatureRulerProps> = ({
           step="5"
           value={currentTempK}
           onChange={handleSliderChange}
-          className="absolute inset-0 w-full h-full opacity-0 cursor-ew-resize z-20"
+          className="absolute inset-0 w-full h-full opacity-0 cursor-ew-resize z-20 touch-none"
         />
 
         <div className="relative w-full h-8 flex items-center bg-neutral-50 rounded-lg border border-black/[0.05] px-2 overflow-hidden">

@@ -36,7 +36,7 @@ export const IconRail: React.FC<IconRailProps> = ({
   ];
 
   return (
-    <aside className="w-14 shrink-0 flex flex-col items-center justify-between py-5 border-r border-black/[0.06] bg-white/70 backdrop-blur-sm select-none">
+    <aside className="hidden md:flex w-14 shrink-0 flex-col items-center justify-between py-5 border-r border-black/[0.06] bg-white/70 backdrop-blur-sm select-none">
       {/* Brand Icon Mark */}
       <div className="flex flex-col items-center gap-6">
         <div className="w-10 h-10 rounded-xl bg-black text-white flex items-center justify-center shadow-sm">

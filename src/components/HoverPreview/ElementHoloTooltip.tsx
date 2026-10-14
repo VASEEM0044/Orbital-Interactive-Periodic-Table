@@ -25,6 +25,11 @@ export function useHoverTooltip(intentDelayMs: number = 80) {
   const rafRef = useRef<number | null>(null);
 
   const showTooltip = useCallback((el: ChemicalElement, targetElement: HTMLElement) => {
+    // Disable hover tooltip on touch-only mobile devices to avoid stuck tooltips
+    if (typeof window !== 'undefined' && window.matchMedia && window.matchMedia('(hover: none) and (pointer: coarse)').matches) {
+      return;
+    }
+
     if (timerRef.current) {
       clearTimeout(timerRef.current);
     }

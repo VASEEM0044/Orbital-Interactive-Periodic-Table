@@ -98,7 +98,7 @@ export const ElementTile: React.FC<ElementTileProps> = ({
         gridColumn: element.gridCol,
         backgroundColor: trendColor ? trendColor : undefined,
       }}
-      className={`relative group aspect-square p-1 rounded-[10px] flex flex-col justify-between text-left select-none outline-none transition-all duration-150 border cursor-pointer ${
+      className={`relative group aspect-square p-1 rounded-[10px] flex flex-col justify-between text-left select-none outline-none transition-all duration-150 border cursor-pointer touch-manipulation ${
         isSelected
           ? 'ring-2 ring-[#1A1A1A] ring-offset-2 ring-offset-white z-30 border-[#1A1A1A] shadow-md bg-white'
           : isDimmed

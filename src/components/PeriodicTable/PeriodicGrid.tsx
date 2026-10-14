@@ -151,7 +151,7 @@ export const PeriodicGrid: React.FC<PeriodicGridProps> = ({
       </div>
 
       {/* DOTTED-GRID CANVAS BACKGROUND CONTAINER */}
-      <div className="flex-1 w-full p-4 sm:p-6 bg-dotted-grid overflow-x-auto overflow-y-auto scrollbar-thin">
+      <div className="flex-1 w-full p-2 sm:p-6 bg-dotted-grid overflow-x-auto overflow-y-auto scrollbar-thin touch-pan-x touch-pan-y overscroll-contain">
         <div
           className="min-w-[860px] max-w-[1100px] mx-auto transition-transform origin-top-left"
           style={{ transform: `scale(${zoomLevel})` }}

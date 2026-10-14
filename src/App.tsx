@@ -7,6 +7,8 @@ import React, { useState } from 'react';
 import { ELEMENTS_DATA } from './data/elements';
 import { ChemicalElement, AtomicTrend, ElementCategory, OrbitalBlock } from './types/element';
 import { IconRail, NavView } from './components/Navigation/IconRail';
+import { MobileBottomNav } from './components/Navigation/MobileBottomNav';
+import { MobileElementBar } from './components/Navigation/MobileElementBar';
 import { TopBar } from './components/Navigation/TopBar';
 import { TemperatureRuler } from './components/TemperatureController/TemperatureRuler';
 import { LeftStatColumn } from './components/Dashboard/LeftStatColumn';
@@ -96,11 +98,11 @@ function PeriodicApp() {
   return (
     <div
       dir={isRtl ? 'rtl' : 'ltr'}
-      className="min-h-screen w-full bg-[#E9E9EA] p-3 sm:p-5 lg:p-6 flex items-center justify-center font-sans antialiased text-neutral-900 selection:bg-neutral-200"
+      className="min-h-screen w-full bg-[#E9E9EA] p-1.5 sm:p-5 lg:p-6 pb-20 md:pb-6 flex items-center justify-center font-sans antialiased text-neutral-900 selection:bg-neutral-200"
     >
       {/* MAIN APP SHELL: One big white-ish (#F7F7F5) container with 28px radius and soft shadow, floating with margin around it */}
-      <div className="w-full max-w-[1680px] min-h-[92vh] bg-[#F7F7F5] rounded-[28px] border border-black/[0.06] shadow-2xl shadow-black/[0.04] overflow-hidden flex flex-row">
-        {/* ICON-ONLY VERTICAL RAIL ON THE FAR LEFT */}
+      <div className="w-full max-w-[1680px] min-h-[92vh] bg-[#F7F7F5] rounded-2xl sm:rounded-[28px] border border-black/[0.06] shadow-2xl shadow-black/[0.04] overflow-hidden flex flex-row">
+        {/* ICON-ONLY VERTICAL RAIL ON THE FAR LEFT (hidden on mobile, replaced by bottom nav) */}
         <IconRail
           currentView={currentView}
           onSelectView={handleSelectNavView}
@@ -122,7 +124,7 @@ function PeriodicApp() {
           />
 
           {/* MAIN PADDED STAGE */}
-          <div className="flex-1 p-4 sm:p-6 flex flex-col gap-4">
+          <div className="flex-1 p-2 sm:p-6 flex flex-col gap-4">
             {/* 2. TEMPERATURE SCRUBBER RULER (0K to 6000K with tick marks & preset chips) */}
             <TemperatureRuler
               currentTempK={currentTempK}
@@ -130,24 +132,10 @@ function PeriodicApp() {
               onTempChange={setCurrentTempK}
             />
 
-            {/* 3. THREE-COLUMN INDUSTRIAL LAYOUT */}
+            {/* 3. THREE-COLUMN INDUSTRIAL LAYOUT (Responsive ordering: Grid first on mobile!) */}
             <div className="flex-1 flex flex-col xl:flex-row gap-4 items-start">
-              {/* LEFT COLUMN (260px): Stacked stat cards (Phase distribution, Trend legend, Block filters) */}
-              <div className="w-full xl:w-[260px] shrink-0">
-                <LeftStatColumn
-                  elements={ELEMENTS_DATA}
-                  currentTempK={currentTempK}
-                  activeTrend={activeTrend}
-                  onSelectTrend={setActiveTrend}
-                  selectedBlock={filterBlock}
-                  onSelectBlock={setFilterBlock}
-                  selectedCategory={filterCategory}
-                  onSelectCategory={setFilterCategory}
-                />
-              </div>
-
-              {/* CENTER COLUMN: Periodic table on subtle DOTTED-GRID canvas background with floating toolbar */}
-              <div className="flex-1 w-full min-w-0">
+              {/* CENTER COLUMN: Periodic table comes first on mobile for immediate visual exploration */}
+              <div className="order-1 xl:order-2 flex-1 w-full min-w-0">
                 <PeriodicGrid
                   elements={ELEMENTS_DATA}
                   activeTrend={activeTrend}
@@ -163,8 +151,22 @@ function PeriodicApp() {
                 />
               </div>
 
+              {/* LEFT COLUMN (260px): Stacked stat cards (Phase distribution, Trend legend, Block filters) */}
+              <div className="order-2 xl:order-1 w-full xl:w-[260px] shrink-0">
+                <LeftStatColumn
+                  elements={ELEMENTS_DATA}
+                  currentTempK={currentTempK}
+                  activeTrend={activeTrend}
+                  onSelectTrend={setActiveTrend}
+                  selectedBlock={filterBlock}
+                  onSelectBlock={setFilterBlock}
+                  selectedCategory={filterCategory}
+                  onSelectCategory={setFilterCategory}
+                />
+              </div>
+
               {/* RIGHT COLUMN (320px): Detail panel for the CLICKED element */}
-              <div className="w-full xl:w-[320px] shrink-0">
+              <div className="order-3 w-full xl:w-[320px] shrink-0">
                 <RightDetailPanel
                   element={selectedElement}
                   currentTempK={currentTempK}
@@ -210,6 +212,30 @@ function PeriodicApp() {
           </div>
         </div>
       </div>
+
+      {/* MOBILE BOTTOM FLOATING ELEMENT BAR (for instant mobile preview without scrolling down) */}
+      <MobileElementBar
+        element={selectedElement}
+        currentTempK={currentTempK}
+        onOpenModal={(el) => {
+          setSelectedElement(el);
+          setIsFullDetailModalOpen(true);
+        }}
+        onOpenCompare={(el) => {
+          setSelectedElement(el);
+          handleOpenCompare(el);
+        }}
+        onClose={() => setSelectedElement(null)}
+      />
+
+      {/* MOBILE BOTTOM NAVIGATION BAR (Thumb-friendly 4 tabs + audio + reset) */}
+      <MobileBottomNav
+        currentView={currentView}
+        onSelectView={handleSelectNavView}
+        isMuted={isMuted}
+        onToggleSound={toggleSound}
+        onReset={handleReset}
+      />
 
       {/* FULL MODAL: Complete Holographic Specimen & Quantum Lab */}
       <ElementDetailModal
