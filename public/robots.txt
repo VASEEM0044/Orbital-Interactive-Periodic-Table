@@ -3,4 +3,4 @@ User-agent: *
 Allow: /
 
 # Google Search Console Sitemap
-Sitemap: https://orbital-interactive-periodic-table.pages.dev/sitemap.xml
+Sitemap: https://periodic-table-7t2.pages.dev/sitemap.xml
